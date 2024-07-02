@@ -1,0 +1,56 @@
+﻿@model FileUploadTaskV2.Models.FilesViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3 class="py-4">UpLoad Your Files</h3>
+
+
+<form method="post" enctype="multipart/form-data">
+	
+		<div class="form-group col-10 py-2">
+			<div class="row ">
+			<label class="label-control">File Name</label>
+			<input for="File" class="form-control" />
+			</div>
+		
+		</div>
+	
+
+	<input type="file" multiple @* accept=".jpg,.png,.gif,.pdf,.doc,.xlx,.txt" *@ name="files" multiple />
+	<button type="submit" asp-controller="File" asp-action="Index">Upload</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+	<div class="alert alert-success" style="margin-top:50px">
+		@ViewBag.Message
+	</div>
+}
+
+@if (ViewBag.ErorrMessage != null)
+{
+	<div class="alert alert-danger" style="margin-top:50px">
+		@ViewBag.ErrorMessage
+	</div>
+}
+
+<p style="margin-top: 50px">List of Files</p>
+<!-- get all the files from the server -->
+  @if(Model!=null){
+
+	 
+
+<ul>
+	
+	@foreach (var item in Model.Files)
+	{
+		<li>
+				<a src="D:\\PracaticeProject/@Url.Content(item.Path)"
+				   asp-route-filename="@item.Name">
+					@item.Name
+				</a>
+		</li>
+	}
+</ul> 
+  }
