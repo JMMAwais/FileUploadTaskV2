@@ -11,7 +11,7 @@ option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection
 builder.Services.AddControllersWithViews();
 //comments
 var app = builder.Build();
-
+//here is achange
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
